@@ -9,6 +9,9 @@ export function useToasts() {
       info(message: string) {
         toastsStore.setState(ToastFactory.info({ message }));
       },
+      warning(message: string) {
+        toastsStore.setState(ToastFactory.warning({ message }));
+      },
     };
   }, []);
 

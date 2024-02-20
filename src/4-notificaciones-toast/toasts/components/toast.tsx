@@ -13,7 +13,7 @@ export function Toast({
 }) {
   const styles = useRef<Record<ToastType, string>>({
     info: 'bg-blue-500 text-white',
-    warning: '',
+    warning: 'bg-yellow-500 text-white',
   });
 
   useEffect(() => {
