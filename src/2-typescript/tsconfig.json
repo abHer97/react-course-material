@@ -1,0 +1,38 @@
+{
+  "compilerOptions": {
+    // Define el tipo de javascript que obtendras despues de la compilacion
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    // Permite especificar que javascript se puede usar al escribir codigo
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    // Especifica el tipo de modulo utilizado en javascript
+    // CommonJs es un invento de nodeJs antes que javascript agregara los modulos de forma nativa
+    // ES6 modulos javascript nativos
+    // ESNext modulos de javascript nativos con features en progreso
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    // Permite importaciones de codigo typescript entre archivos con extension .ts .mts .tsx
+    "allowImportingTsExtensions": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    // Configura el tipo de jsx a utilizar en componentes de react
+    "jsx": "react-jsx",
+
+    /* Linting */
+    // Ser estricto al analizar y marcar errores de codigo
+    "strict": true,
+    // Marcar variables no usadas
+    "noUnusedLocals": true,
+    // Marcar parametros no utilizados
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  // Que archivos incluir al compilar una libreria
+  "include": ["src"],
+  // Combinar configuraciones de tsconfig
+  "references": [{ "path": "./tsconfig.node.json" }]
+}
