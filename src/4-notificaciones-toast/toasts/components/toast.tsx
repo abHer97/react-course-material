@@ -28,9 +28,21 @@ export function Toast({
   }, [onExpired, toast]);
 
   return (
-    <article className={`p-2 rounded-md flex flex-row gap-2 ${styles.current[toast.type]}`}>
+    <article
+      className={`p-2 rounded-md flex flex-row gap-2 w-72 max-h-[6rem] overflow-y-scroll ${
+        styles.current[toast.type]
+      }`}
+    >
       <ToastIcon type={toast.type} />
-      <h2>{toast.message}</h2>
+      <h2>
+        {toast.message}
+        {toast.id}
+        {toast.id}
+        {toast.id}
+        {toast.id}
+        {toast.id}
+        {toast.id}
+      </h2>
     </article>
   );
 }

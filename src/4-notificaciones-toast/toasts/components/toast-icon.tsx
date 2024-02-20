@@ -4,7 +4,7 @@ export function ToastIcon({ type }: { type: ToastType }) {
   if (type === 'info') {
     return (
       <svg
-        className='w-6 h-6 text-white'
+        className='w-6 h-6 text-white shrink-0'
         aria-hidden='true'
         xmlns='http://www.w3.org/2000/svg'
         fill='currentColor'
@@ -22,7 +22,7 @@ export function ToastIcon({ type }: { type: ToastType }) {
   if (type === 'warning') {
     return (
       <svg
-        className='w-6 h-6 text-gray-800 dark:text-white'
+        className='w-6 h-6 text-gray-800 dark:text-white shrink-0'
         aria-hidden='true'
         xmlns='http://www.w3.org/2000/svg'
         fill='currentColor'
@@ -40,7 +40,7 @@ export function ToastIcon({ type }: { type: ToastType }) {
   if (type === 'error') {
     return (
       <svg
-        className='w-6 h-6 text-white'
+        className='w-6 h-6 text-white shrink-0'
         aria-hidden='true'
         xmlns='http://www.w3.org/2000/svg'
         fill='currentColor'
@@ -57,7 +57,7 @@ export function ToastIcon({ type }: { type: ToastType }) {
 
   return (
     <svg
-      className='w-6 h-6 text-white'
+      className='w-6 h-6 text-white shrink-0'
       aria-hidden='true'
       xmlns='http://www.w3.org/2000/svg'
       fill='currentColor'
