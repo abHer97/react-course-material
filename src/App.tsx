@@ -29,7 +29,9 @@ function App() {
       </div>
       <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
       <MiPrimerComponente />
-      <button onClick={() => toasts.info('Lanzando mi primer toast')}>Lanzar toast info</button>
+      <button onClick={() => toasts.info('Toast de informacion')}>Lanzar toast info</button>
+      <button onClick={() => toasts.warning('Toast de advertencia')}>Lanzar toast warning</button>
+      <button onClick={() => toasts.error('Toast de error')}>Lanzar toast error</button>
     </>
   );
 }
