@@ -34,15 +34,7 @@ export function Toast({
       }`}
     >
       <ToastIcon type={toast.type} />
-      <h2>
-        {toast.message}
-        {toast.id}
-        {toast.id}
-        {toast.id}
-        {toast.id}
-        {toast.id}
-        {toast.id}
-      </h2>
+      <p>{toast.message}</p>
     </article>
   );
 }
