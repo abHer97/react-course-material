@@ -12,6 +12,9 @@ export function useToasts() {
       warning(message: string) {
         toastsStore.setState(ToastFactory.warning({ message }));
       },
+      error(message: string) {
+        toastsStore.setState(ToastFactory.error({ message }));
+      },
     };
   }, []);
 

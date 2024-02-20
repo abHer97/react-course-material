@@ -25,4 +25,12 @@ export const ToastFactory = {
       type: 'warning',
     };
   },
+  error(toast: Partial<IToast> = {}): IToast {
+    return {
+      id: createId(),
+      message: '',
+      ...toast,
+      type: 'error',
+    };
+  },
 };
