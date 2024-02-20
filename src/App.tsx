@@ -4,9 +4,11 @@ import viteLogo from '/vite.svg';
 import './App.css';
 
 import { MiPrimerComponente } from './mi-primer-componente';
+import { useToasts } from './4-notificaciones-toast/toasts/hooks/use-toasts/use-toasts';
 
 function App() {
   const [count, setCount] = useState(0);
+  const toasts = useToasts();
 
   return (
     <>
@@ -27,6 +29,7 @@ function App() {
       </div>
       <p className='read-the-docs'>Click on the Vite and React logos to learn more</p>
       <MiPrimerComponente />
+      <button onClick={() => toasts.info('Lanzando mi primer toast')}>Lanzar toast info</button>
     </>
   );
 }
