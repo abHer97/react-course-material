@@ -17,4 +17,12 @@ export const ToastFactory = {
       type: 'info',
     };
   },
+  warning(toast: Partial<IToast> = {}): IToast {
+    return {
+      id: createId(),
+      message: '',
+      ...toast,
+      type: 'warning',
+    };
+  },
 };
