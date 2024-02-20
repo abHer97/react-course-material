@@ -1,3 +1,5 @@
+import { Subscriber } from './subscriber';
+
 export interface IObservableStore<TState> {
   /**
    * Metodo que cambia el estado interno y notifica a todos los suscriptores del cambio
@@ -10,9 +12,9 @@ export interface IObservableStore<TState> {
   /**
    * Metodo para suscribirse y obtener notificaciones de los cambios de estado que ocurran
    */
-  subscribe(subscriber: (state: TState) => void): void;
+  subscribe(subscriber: Subscriber<TState>): void;
   /**
    * Metodo para cancelar la suscripcion. Debe pasarse la misma funcion que fue proporcionada al metodo "subscribe"
    */
-  unsubscribe(subscriber: (state: TState) => void): void;
+  unsubscribe(subscriber: Subscriber<TState>): void;
 }
