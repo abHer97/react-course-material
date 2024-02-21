@@ -40,7 +40,9 @@ export function ToastContainer({ position = ToastsPosition.topRight }: ToastCont
       className={`fixed flex flex-col gap-2 ${positions.current[position]}`}
     >
       {toasts.map((toast) => {
-        return <Toast key={toast.id} data={toast} onExpired={handleExpiredToast} />;
+        return (
+          <Toast key={toast.id} data={toast} onExpired={handleExpiredToast} position={position} />
+        );
       })}
     </section>
   );
