@@ -4,6 +4,7 @@ import react from '@vitejs/plugin-react-swc';
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  base: './',
   plugins: [react()],
   test: {
     // Habilita vitest en todos los archivos de test sin necesidad de importar las funciones de test
