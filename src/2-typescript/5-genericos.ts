@@ -1,12 +1,12 @@
 export {};
 
 function sum<T>(a: T, b: T): T {
-  // @ts-ignore
+  // @ts-expect-error values are compatible
   return a + b;
 }
 
-const result = sum<number>(100, 200);
-const name = sum<string>('john', 'doe');
+export const result = sum<number>(100, 200);
+export const name = sum<string>('john', 'doe');
 
 type PokemonType = 'fire' | 'water' | 'electric';
 

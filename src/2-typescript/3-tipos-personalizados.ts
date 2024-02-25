@@ -10,7 +10,7 @@ type PokemonType = 'fire' | 'water' | 'electric';
 
 // const pokemon: IPokemon = {};
 
-const pokemon: Pokemon = {
+export const pokemon: Pokemon = {
   name: 'pikachu',
   strength: 0,
   type: 'electric',

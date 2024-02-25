@@ -8,7 +8,7 @@ interface IPokemon {
   type: PokemonType;
 }
 
-const pokemon: IPokemon = {
+export const pokemon: IPokemon = {
   name: 'charmander',
   strength: 0,
   type: 'fire',

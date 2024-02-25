@@ -1,9 +1,9 @@
 export {};
 
-let age = 20;
+export const age = 20;
 // age = ''; // error
 
-const pokemon = {
+export const pokemon = {
   name: 'pikachu',
   type: 'fire',
   strength: 20,

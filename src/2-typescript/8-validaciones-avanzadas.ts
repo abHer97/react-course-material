@@ -6,10 +6,10 @@ function isNumber(arg: unknown): arg is number {
 function isString(arg: unknown): arg is string {
   return typeof arg === 'string';
 }
-function isArray(arg: unknown): arg is Array<unknown> {
+export function isArray(arg: unknown): arg is Array<unknown> {
   return Array.isArray(arg);
 }
-function isNull(arg: unknown): arg is null {
+export function isNull(arg: unknown): arg is null {
   return arg === null;
 }
 function isObject(arg: unknown): arg is object {
@@ -46,9 +46,9 @@ function isPokemon(arg: unknown): arg is Pokemon {
   );
 }
 
-function operation(a: string, b: string): string;
-function operation(a: number, b: number): number;
-function operation(a: string | number, b: string | number): string | number {
+export function operation(a: string, b: string): string;
+export function operation(a: number, b: number): number;
+export function operation(a: string | number, b: string | number): string | number {
   if (isNumber(a) && isNumber(b)) {
     return a + b;
   } else {
@@ -68,7 +68,7 @@ interface Pokemon {
 //   }
 // }
 
-function validatePokemon(pokemon: unknown) {
+export function validatePokemon(pokemon: unknown) {
   if (isPokemon(pokemon)) {
     pokemon.name.toUpperCase();
   }
@@ -84,7 +84,7 @@ function assertIsPokemon(arg: unknown): asserts arg is Pokemon {
   }
 }
 
-async function savePokemon(data: Pokemon) {
+export async function savePokemon(data: Pokemon) {
   assertIsPokemon(data);
 
   // fetch('')
