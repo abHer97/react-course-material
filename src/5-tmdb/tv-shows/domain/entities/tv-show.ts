@@ -1,4 +1,4 @@
-import { MediaType } from './media-type';
+import { MediaType } from '../../../shared/domain/entities/media-type';
 
 export interface ITvShow {
   adult: boolean;

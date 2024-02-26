@@ -1,7 +1,7 @@
 import { array, boolean, enum_, number, object, parse, string } from 'valibot';
 
 import { IMovie } from '../entities/movie';
-import { MediaType } from '../entities/media-type';
+import { MediaType } from '../../../shared/domain/entities/media-type';
 
 const movieSchema = object({
   adult: boolean(),
