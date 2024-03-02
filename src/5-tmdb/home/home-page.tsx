@@ -3,6 +3,8 @@ import { useEffect, useState } from 'react';
 import { Page } from '../components/page/page';
 import { IMovie } from '../movies/domain/entities/movie';
 import { moviesDependencies } from '../movies/presentation/movies-dependencies';
+import { MoviesList } from '../movies/view/components/movies-list/movies-list';
+import { HorizontalScroll } from '../components/horizontal-scroll/horizontal-scroll';
 
 export function HomePage() {
   const [movies, setMovies] = useState<IMovie[]>([]);
@@ -15,7 +17,9 @@ export function HomePage() {
 
   return (
     <Page documentTitle='Inicio'>
-      <pre>{JSON.stringify(movies, null, 2)}</pre>
+      <HorizontalScroll className='p-2'>
+        <MoviesList className='flex flex-row gap-2' movies={movies} />
+      </HorizontalScroll>
     </Page>
   );
 }
