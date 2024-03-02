@@ -4,7 +4,7 @@ import { createPaginationSchema } from '../../../tv-shows/domain/validations/pag
 import { IMovieResponse } from '../entities/movie-response';
 import { partialMovieSchema } from './movie-validations';
 
-export function validateMovieResponse(data: unknown): asserts data is IMovieResponse {
+export function validatePartialMovieResponse(data: unknown): asserts data is IMovieResponse {
   const schema = createPaginationSchema(array(partialMovieSchema));
 
   parse(schema, data);
