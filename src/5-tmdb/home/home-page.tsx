@@ -1,31 +1,21 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Page } from '../components/page/page';
+import { IMovie } from '../movies/domain/entities/movie';
+import { moviesDependencies } from '../movies/presentation/movies-dependencies';
 
 export function HomePage() {
+  const [movies, setMovies] = useState<IMovie[]>([]);
+
   useEffect(() => {
-    const abortController = new AbortController();
-
-    fetch('https://api.themoviedb.org/3/trending/all/day?language=es-MX', {
-      signal: abortController.signal,
-      headers: {
-        accept: 'application/json',
-        Authorization:
-          'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4YzA2NjgwNWQ1ODc3ZjcyNDE2OWM2N2JiZTU1M2RkMSIsInN1YiI6IjY1YjFlYmU2Mjg2NmZhMDE3YmUzOGM2MyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.73b0d7FhSi2fADcyEf_2qT8pWaiNu9ve6tWM0jIGc3k',
-      },
-    })
-      .then((resp) => resp.json())
-      .then((data) => {
-        console.log({ data });
-      })
-      .catch((err) => {
-        console.log({ err });
-      });
-
-    return () => {
-      abortController.abort();
-    };
+    moviesDependencies.service.getTrendingMovies({}).then((resp) => {
+      setMovies(resp.results);
+    });
   }, []);
 
-  return <Page documentTitle='Inicio'>Inicio</Page>;
+  return (
+    <Page documentTitle='Inicio'>
+      <pre>{JSON.stringify(movies, null, 2)}</pre>
+    </Page>
+  );
 }
