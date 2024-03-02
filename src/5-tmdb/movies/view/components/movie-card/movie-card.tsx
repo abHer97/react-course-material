@@ -18,11 +18,18 @@ export function MovieCard({ movie, linkTo }: MovieCardProps) {
   );
 
   return (
-    <article className='w-40 flex flex-col gap-4'>
+    <article className='w-44 flex flex-col gap-4'>
       {isString(linkTo) ? (
-        <Link to={'movie/' + linkTo}>{movieImage}</Link>
+        <Link
+          to={'movie/' + linkTo}
+          className='w-full h-64 shadow-md hover:shadow-xl transition-shadow rounded-md overflow-hidden'
+        >
+          {movieImage}
+        </Link>
       ) : (
-        <header>{movieImage}</header>
+        <header className='w-full h-64 shadow-md hover:shadow-xl transition-shadow rounded-md overflow-hidden'>
+          {movieImage}
+        </header>
       )}
       <div>
         <h2>{movie.title}</h2>
