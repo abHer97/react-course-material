@@ -27,7 +27,8 @@ export class HttpClient implements IHttpClient {
   async get<T>(uri = '', config?: IHttpClientRequestConfig): Promise<IHttpClientResponse<T>> {
     const { id, params } = config || {};
 
-    const finalUri = uri + isString(id) || isNumber(id) ? `/${id}` : '';
+    const finalUri = uri + (isString(id) || isNumber(id) ? `/${id}` : '');
+    console.log({ uri, finalUri, config });
 
     return this.axios.get(finalUri, { params: params }).then((resp) => {
       return {
