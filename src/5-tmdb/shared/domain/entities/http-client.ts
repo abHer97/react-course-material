@@ -5,6 +5,7 @@ export interface IHttpClientConfig {
 
 export interface IHttpClientRequestConfig {
   params?: Record<string, string>;
+  id?: string | number;
 }
 
 export interface IHttpClientResponse<T> {

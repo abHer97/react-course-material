@@ -6,6 +6,8 @@ import {
 } from '../../domain/entities/http-client';
 import { isFunction } from '../../domain/validations/function';
 import axios, { AxiosHeaders, AxiosInstance } from 'axios';
+import { isString } from '../../domain/validations/string';
+import { isNumber } from '../../domain/validations/number';
 
 export class HttpClient implements IHttpClient {
   private readonly axios: AxiosInstance;
@@ -23,7 +25,11 @@ export class HttpClient implements IHttpClient {
   }
 
   async get<T>(uri = '', config?: IHttpClientRequestConfig): Promise<IHttpClientResponse<T>> {
-    return this.axios.get(uri, { params: config?.params }).then((resp) => {
+    const { id, params } = config || {};
+
+    const finalUri = uri + isString(id) || isNumber(id) ? `/${id}` : '';
+
+    return this.axios.get(finalUri, { params: params }).then((resp) => {
       return {
         data: resp.data as T,
         status: resp.status,
