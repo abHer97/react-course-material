@@ -3,7 +3,7 @@ import { array, boolean, enum_, number, object, parse, string } from 'valibot';
 import { IMovie } from '../entities/movie';
 import { MediaType } from '../../../shared/domain/entities/media-type';
 
-const movieSchema = object({
+export const movieSchema = object({
   adult: boolean(),
   backdrop_path: string(),
   id: number(),
