@@ -1,6 +1,6 @@
 import { array, boolean, enum_, number, object, parse, string } from 'valibot';
 
-import { IMovie } from '../entities/movie';
+import { IPartialMovie } from '../entities/movie';
 import { MediaType } from '../../../shared/domain/entities/media-type';
 
 export const movieSchema = object({
@@ -21,7 +21,7 @@ export const movieSchema = object({
   vote_count: number(),
 });
 
-export function isMovie(data: unknown): data is IMovie {
+export function isMovie(data: unknown): data is IPartialMovie {
   try {
     parse(movieSchema, data);
     return true;

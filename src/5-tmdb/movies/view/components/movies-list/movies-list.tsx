@@ -1,10 +1,10 @@
 import { HTMLAttributes } from 'react';
 
-import { IMovie } from '../../../domain/entities/movie';
+import { IPartialMovie } from '../../../domain/entities/movie';
 import { MovieCard } from '../movie-card/movie-card';
 
 export interface MoviesListProps extends HTMLAttributes<HTMLUListElement> {
-  movies: IMovie[];
+  movies: IPartialMovie[];
 }
 
 export function MoviesList({ movies, ...props }: MoviesListProps) {

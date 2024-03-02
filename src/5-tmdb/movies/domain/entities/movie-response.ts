@@ -1,4 +1,4 @@
-import { IMovie } from './movie';
+import { IPartialMovie } from './movie';
 import { IPaginatedResponse } from '../../../tv-shows/domain/entities/response';
 
-export interface IMovieResponse extends IPaginatedResponse<IMovie[]> {}
+export interface IMovieResponse extends IPaginatedResponse<IPartialMovie[]> {}

@@ -1,6 +1,6 @@
 import { MediaType } from '../../../shared/domain/entities/media-type';
 
-export interface IMovie {
+export interface IPartialMovie {
   adult: boolean;
   backdrop_path: string;
   id: number;

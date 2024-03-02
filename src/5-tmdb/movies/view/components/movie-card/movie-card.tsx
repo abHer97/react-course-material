@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom';
 
 import { isString } from '../../../../shared/domain/validations/string';
-import { IMovie } from '../../../domain/entities/movie';
+import { IPartialMovie } from '../../../domain/entities/movie';
 
 export interface MovieCardProps {
-  movie: IMovie;
+  movie: IPartialMovie;
   linkTo?: string;
 }
 
