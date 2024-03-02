@@ -3,7 +3,7 @@ import { array, boolean, enum_, number, object, parse, string } from 'valibot';
 import { IPartialMovie } from '../entities/movie';
 import { MediaType } from '../../../shared/domain/entities/media-type';
 
-export const movieSchema = object({
+export const partialMovieSchema = object({
   adult: boolean(),
   backdrop_path: string(),
   id: number(),
@@ -21,9 +21,9 @@ export const movieSchema = object({
   vote_count: number(),
 });
 
-export function isMovie(data: unknown): data is IPartialMovie {
+export function isPartialMovie(data: unknown): data is IPartialMovie {
   try {
-    parse(movieSchema, data);
+    parse(partialMovieSchema, data);
     return true;
   } catch {
     return false;
