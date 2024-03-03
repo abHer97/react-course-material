@@ -38,8 +38,8 @@ export interface IMovie extends Omit<IPartialMovie, 'media_type' | 'genre_ids'> 
   genres: Genre[];
   homepage: string;
   imdb_id: string;
-  production_companies: Productioncompany[];
-  production_countries: Productioncountry[];
+  // production_companies: Productioncompany[];
+  // production_countries: Productioncountry[];
   revenue: number;
   runtime: number;
   spoken_languages: Spokenlanguage[];
@@ -53,17 +53,17 @@ interface Spokenlanguage {
   name: string;
 }
 
-interface Productioncountry {
-  iso_3166_1: string;
-  name: string;
-}
+// interface Productioncountry {
+//   iso_3166_1: string;
+//   name: string;
+// }
 
-interface Productioncompany {
-  id: number;
-  logo_path?: string;
-  name: string;
-  origin_country: string;
-}
+// interface Productioncompany {
+//   id: number;
+//   logo_path?: string;
+//   name: string;
+//   origin_country: string;
+// }
 
 interface Genre {
   id: number;

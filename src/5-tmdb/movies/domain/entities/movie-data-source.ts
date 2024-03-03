@@ -5,4 +5,5 @@ export interface IMovieDataSource {
     params?: IMovieParams;
     periodTyme?: 'day' | 'week';
   }): Promise<unknown>;
+  getMovieDetails(options: { movieId: number; params?: IMovieParams }): Promise<unknown>;
 }
