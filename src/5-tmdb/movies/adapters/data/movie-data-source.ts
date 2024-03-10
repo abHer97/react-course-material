@@ -27,7 +27,7 @@ export class MovieDataSource implements IMovieDataSource {
     return this.httpClient
       .get(this.uri, {
         id: movieId,
-        params: (params || {}) as Record<string, string>,
+        params: (params || { language: 'es-MX' }) as Record<string, string>,
       })
       .then((resp) => resp.data);
   }
