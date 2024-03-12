@@ -1,9 +1,9 @@
-import { IMovieParams } from './movie-params';
+import { IMovieRequestOptions } from './movie-request-options';
 
 export interface IMovieDataSource {
-  getTrendingMovies(options?: {
-    params?: IMovieParams;
-    periodTyme?: 'day' | 'week';
-  }): Promise<unknown>;
-  getMovieDetails(options: { movieId: number; params?: IMovieParams }): Promise<unknown>;
+  getTrendingMovies(
+    options?: IMovieRequestOptions & { periodTyme?: 'day' | 'week' }
+  ): Promise<unknown>;
+  getMovieDetails(options: IMovieRequestOptions & { movieId: number }): Promise<unknown>;
+  getMovieCredits(options: IMovieRequestOptions & { movieId: number }): Promise<unknown>;
 }

@@ -1,11 +1,15 @@
 import { IMovie } from './movie';
-import { IMovieParams } from './movie-params';
-import { IPartialMovieResponse } from './movie-response';
+import { IMovieRequestOptions } from './movie-request-options';
+import { IMovieCreditsResponse, IPartialMovieResponse } from './movie-response';
 
 export interface IMovieService {
-  getTrendingMovies(options?: {
-    params?: IMovieParams;
-    periodTyme?: 'day' | 'week';
-  }): Promise<IPartialMovieResponse>;
-  getMovieDetails(options: { movieId: number; params?: IMovieParams }): Promise<IMovie>;
+  getTrendingMovies(
+    options?: IMovieRequestOptions & {
+      periodTyme?: 'day' | 'week';
+    }
+  ): Promise<IPartialMovieResponse>;
+  getMovieDetails(options: IMovieRequestOptions & { movieId: number }): Promise<IMovie>;
+  getMovieCredits(
+    options: IMovieRequestOptions & { movieId: number }
+  ): Promise<IMovieCreditsResponse>;
 }

@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 
 import { isString } from '../../../../shared/domain/validations/string';
 import { IPartialMovie } from '../../../domain/entities/movie';
+import { FileSize, Img } from '../../../../components/img/img';
 
 export interface MovieCardProps {
   movie: IPartialMovie;
@@ -10,9 +11,10 @@ export interface MovieCardProps {
 
 export function MovieCard({ movie, linkTo }: MovieCardProps) {
   const movieImage = (
-    <img
+    <Img
       className='object-cover'
-      src={'https://image.tmdb.org/t/p/w500' + movie.poster_path}
+      fileSize={FileSize.w300}
+      src={movie.poster_path}
       alt={movie.title}
     />
   );

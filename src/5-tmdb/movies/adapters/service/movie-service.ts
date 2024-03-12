@@ -1,12 +1,17 @@
+import { number, object, optional, parse } from 'valibot';
+
 import { IMovie } from '../../domain/entities/movie';
+import { IMovieCreditsResponse, IPartialMovieResponse } from '../../domain/entities/movie-response';
 import { IMovieDataSource } from '../../domain/entities/movie-data-source';
 import { IMovieParams } from '../../domain/entities/movie-params';
+import { IMovieRequestOptions } from '../../domain/entities/movie-request-options';
 import { IMovieService } from '../../domain/entities/movie-service';
-import { IPartialMovieResponse } from '../../domain/entities/movie-response';
-import { parseMovie } from '../../domain/validations/movie-validations';
-import { validatePartialMovieResponse } from '../../domain/validations/movie-response-validations';
-import { number, object, optional, parse } from 'valibot';
 import { movieParamsSchema } from '../../domain/validations/movie-params-validations';
+import { parseMovie } from '../../domain/validations/movie-validations';
+import {
+  parseMovieCreditsResponse,
+  validatePartialMovieResponse,
+} from '../../domain/validations/movie-response-validations';
 
 const movideDetailsOptionsSchema = object({
   movieId: number(),
@@ -36,5 +41,16 @@ export class MovieService implements IMovieService {
     const response = await this.dataSource.getMovieDetails(options);
 
     return parseMovie(response);
+  }
+
+  async getMovieCredits(
+    options: IMovieRequestOptions & { movieId: number }
+  ): Promise<IMovieCreditsResponse> {
+    const parsedOptions = parse(movideDetailsOptionsSchema, options);
+
+    const response = await this.dataSource.getMovieCredits(parsedOptions);
+    console.log({ response });
+
+    return parseMovieCreditsResponse(response);
   }
 }

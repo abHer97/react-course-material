@@ -1,6 +1,7 @@
 import { IHttpClient } from '../../../shared/domain/entities/http-client';
 import { IMovieDataSource } from '../../domain/entities/movie-data-source';
 import { IMovieParams } from '../../domain/entities/movie-params';
+import { IMovieRequestOptions } from '../../domain/entities/movie-request-options';
 
 export class MovieDataSource implements IMovieDataSource {
   private readonly uri = '/movie';
@@ -12,7 +13,7 @@ export class MovieDataSource implements IMovieDataSource {
   }): Promise<unknown> {
     return this.httpClient
       .get(`/trending/movie/${options?.periodTyme || 'day'}`, {
-        params: (options?.params || { language: 'es-MX' }) as Record<string, string>,
+        params: this.parseParams(options?.params || { language: 'es-MX' }),
       })
       .then((resp) => resp.data);
   }
@@ -27,8 +28,31 @@ export class MovieDataSource implements IMovieDataSource {
     return this.httpClient
       .get(this.uri, {
         id: movieId,
-        params: (params || { language: 'es-MX' }) as Record<string, string>,
+        params: this.parseParams(params || { language: 'es-MX' }),
       })
       .then((resp) => resp.data);
+  }
+
+  getMovieCredits({
+    movieId,
+    params,
+  }: IMovieRequestOptions & { movieId: number }): Promise<unknown> {
+    return this.httpClient
+      .get(`${this.uri}/${movieId}/credits`, {
+        params: this.parseParams(params || { language: 'es-MX' }),
+      })
+      .then((resp) => resp.data);
+  }
+
+  private parseParams(params?: IMovieParams): Record<string, string> | undefined {
+    if (!params) return;
+
+    const parsedParams: Record<string, string> = {};
+
+    if (params.language) {
+      parsedParams.language = params.language;
+    }
+
+    return parsedParams;
   }
 }
