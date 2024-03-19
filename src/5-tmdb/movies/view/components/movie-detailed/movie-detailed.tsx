@@ -18,7 +18,7 @@ export function MovieDetailed({ movie }: { movie: IMovie }) {
               })}
             </ul>
           </div>
-          <div>
+          <div className='flex flex-row items-center gap-2'>
             <MoviePercentage movieVoteAverage={movie.vote_average} />
             <span>Puntuacion de usuario</span>
           </div>
