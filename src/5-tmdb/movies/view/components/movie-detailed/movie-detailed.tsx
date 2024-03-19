@@ -9,9 +9,9 @@ export function MovieDetailed({ movie }: { movie: IMovie }) {
     <section className='flex flex-col gap-4'>
       <div className='relative flex flex-col md:flex-row gap-4'>
         <div
-          className='absolute w-full h-full max-h-64 -z-10'
+          className='absolute w-full h-full max-h-72 -z-10'
           style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.6),rgba(255,255,255,0.6)), linear-gradient(to top, rgb(255,255,255), rgba(0,0,0,0.1)), url('https://image.tmdb.org/t/p/w500${movie.backdrop_path})`,
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.6),rgba(255,255,255,0.6)), linear-gradient(to top, rgb(255,255,255) 10%, rgba(0,0,0,0.1)), url('https://image.tmdb.org/t/p/w500${movie.backdrop_path})`,
             backgroundRepeat: 'no-repeat',
             backgroundSize: 'cover',
           }}
