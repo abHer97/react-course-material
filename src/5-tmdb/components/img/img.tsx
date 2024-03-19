@@ -14,5 +14,5 @@ export interface ImgProps extends ImgHTMLAttributes<HTMLImageElement> {
 }
 
 export function Img({ fileSize, src, ...props }: ImgProps) {
-  return <img src={`https://image.tmdb.org/t/p/${fileSize}/${src}`} {...props} />;
+  return <img src={`https://image.tmdb.org/t/p/${fileSize}${src}`} {...props} />;
 }
