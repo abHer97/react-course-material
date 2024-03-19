@@ -6,6 +6,7 @@ export interface IHttpClientConfig {
 export interface IHttpClientRequestConfig {
   params?: Record<string, string>;
   id?: string | number;
+  body?: unknown;
 }
 
 export interface IHttpClientResponse<T> {
@@ -16,4 +17,5 @@ export interface IHttpClientResponse<T> {
 
 export interface IHttpClient {
   get<T>(uri?: string, params?: IHttpClientRequestConfig): Promise<IHttpClientResponse<T>>;
+  post<T>(uri?: string, params?: IHttpClientRequestConfig): Promise<IHttpClientResponse<T>>;
 }

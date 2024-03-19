@@ -37,4 +37,18 @@ export class HttpClient implements IHttpClient {
       };
     });
   }
+
+  async post<T>(uri = '', config?: IHttpClientRequestConfig): Promise<IHttpClientResponse<T>> {
+    const { id, body, params } = config || {};
+
+    const finalUri = uri + (isString(id) || isNumber(id) ? `/${id}` : '');
+
+    return this.axios.post(finalUri, { params: params, data: body }).then((resp) => {
+      return {
+        data: resp.data as T,
+        status: resp.status,
+        statusText: resp.statusText,
+      };
+    });
+  }
 }
