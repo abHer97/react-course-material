@@ -43,12 +43,14 @@ export class HttpClient implements IHttpClient {
 
     const finalUri = uri + (isString(id) || isNumber(id) ? `/${id}` : '');
 
-    return this.axios.post(finalUri, { params: params, data: body }).then((resp) => {
-      return {
-        data: resp.data as T,
-        status: resp.status,
-        statusText: resp.statusText,
-      };
-    });
+    return this.axios
+      .request({ url: finalUri, method: 'post', params: params, data: body })
+      .then((resp) => {
+        return {
+          data: resp.data as T,
+          status: resp.status,
+          statusText: resp.statusText,
+        };
+      });
   }
 }
