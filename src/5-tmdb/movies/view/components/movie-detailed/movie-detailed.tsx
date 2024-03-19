@@ -33,7 +33,7 @@ export function MovieDetailed({ movie }: { movie: IMovie }) {
             <MoviePercentage movieVoteAverage={movie.vote_average} />
             <span>Puntuacion de usuario</span>
           </div>
-          <MovieButtons />
+          <MovieButtons movie={movie} />
           <div>
             <p className='text-sm text-gray-600 italic'>{movie.tagline}</p>
             <p>Resumen</p>
