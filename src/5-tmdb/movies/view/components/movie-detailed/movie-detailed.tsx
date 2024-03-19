@@ -6,9 +6,14 @@ import { MoviePercentage } from '../movie-percentage/movie-percentage';
 export function MovieDetailed({ movie }: { movie: IMovie }) {
   return (
     <section className='flex flex-col gap-4'>
-      <div className='flex flex-col md:flex-row gap-4'>
-        <Img fileSize={FileSize.w200} src={movie.poster_path} />
-        <article className='flex flex-col gap-4'>
+      <div className='relative flex flex-col md:flex-row gap-4'>
+        <Img
+          className='absolute w-full h-64 object-cover -z-10 opacity-20'
+          fileSize={FileSize.w500}
+          src={movie.backdrop_path}
+        />
+        <Img className='max-h-64 object-contain' fileSize={FileSize.w200} src={movie.poster_path} />
+        <article className='flex flex-col gap-4 p-2 sm:p-0'>
           <div>
             <h2>{movie.title}</h2>
             <div className='flex flex-row gap-2 text-sm items-center w-full overflow-x-scroll'>
