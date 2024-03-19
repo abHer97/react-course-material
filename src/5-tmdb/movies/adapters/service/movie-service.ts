@@ -12,6 +12,7 @@ import {
   parseMovieCreditsResponse,
   validatePartialMovieResponse,
 } from '../../domain/validations/movie-response-validations';
+import { IMovieAccountStates } from '../../domain/entities/movie-account-states';
 
 const movideDetailsOptionsSchema = object({
   movieId: number(),
@@ -20,6 +21,13 @@ const movideDetailsOptionsSchema = object({
 
 export class MovieService implements IMovieService {
   constructor(private readonly dataSource: IMovieDataSource) {}
+  async getMovieAccountStates(
+    options: IMovieRequestOptions & { movieId: number }
+  ): Promise<IMovieAccountStates> {
+    const response = await this.dataSource.getMovieAccountStates(options);
+
+    return response as IMovieAccountStates;
+  }
 
   async getTrendingMovies(options: {
     params?: IMovieParams;

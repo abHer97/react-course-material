@@ -6,6 +6,13 @@ import { IMovieRequestOptions } from '../../domain/entities/movie-request-option
 export class MovieDataSource implements IMovieDataSource {
   private readonly uri = '/movie';
   constructor(private readonly httpClient: IHttpClient) {}
+  getMovieAccountStates(options: IMovieRequestOptions & { movieId: number }): Promise<unknown> {
+    const { movieId, params } = options;
+
+    return this.httpClient
+      .get(`/movie/${movieId}/account_states`, { params: this.parseParams(params) })
+      .then((resp) => resp.data);
+  }
 
   getTrendingMovies(options?: {
     params?: IMovieParams;

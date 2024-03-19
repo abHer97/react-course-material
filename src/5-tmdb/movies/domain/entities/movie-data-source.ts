@@ -6,4 +6,5 @@ export interface IMovieDataSource {
   ): Promise<unknown>;
   getMovieDetails(options: IMovieRequestOptions & { movieId: number }): Promise<unknown>;
   getMovieCredits(options: IMovieRequestOptions & { movieId: number }): Promise<unknown>;
+  getMovieAccountStates(options: IMovieRequestOptions & { movieId: number }): Promise<unknown>;
 }

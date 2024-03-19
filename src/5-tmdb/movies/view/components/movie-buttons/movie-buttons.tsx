@@ -1,10 +1,13 @@
-import { ButtonHTMLAttributes, PropsWithChildren } from 'react';
-import { IMovie } from '../../../domain/entities/movie';
+import { ButtonHTMLAttributes, PropsWithChildren, useEffect, useState } from 'react';
+
 import { accountDependencies } from '../../../../account/presentation/account-dependencies';
+import { IMovie } from '../../../domain/entities/movie';
+import { IMovieAccountStates } from '../../../domain/entities/movie-account-states';
 import { MediaType } from '../../../../shared/domain/entities/media-type';
+import { moviesDependencies } from '../../../presentation/movies-dependencies';
+import { Spinner } from '../../../../components/spinner/spinner';
 import { useToasts } from '../../../../../4-notificaciones-toast/toasts/hooks/use-toasts/use-toasts';
 import { useToggle } from '../../../../hooks/use-toggle/use-toggle';
-import { Spinner } from '../../../../components/spinner/spinner';
 
 function ButtonCircle({ className = '', ...props }: ButtonHTMLAttributes<HTMLButtonElement>) {
   return (
@@ -20,20 +23,38 @@ function ButtonContainer({ children }: PropsWithChildren) {
 }
 
 export function MovieButtons({ movie }: { movie: IMovie }) {
+  const [movieAccountStates, setMovieAccountStates] = useState<IMovieAccountStates | null>(null);
+  const loadingMovieAccountStates = useToggle();
   const loadingFavorite = useToggle();
   const loadingWatchList = useToggle();
   const toasts = useToasts();
+
+  useEffect(() => {
+    loadingMovieAccountStates.toggleOn();
+
+    moviesDependencies.service
+      .getMovieAccountStates({ movieId: movie.id })
+      .then((resp) => {
+        setMovieAccountStates(resp);
+      })
+      .finally(loadingMovieAccountStates.toggleOff);
+  }, [movie]); // eslint-disable-line
 
   function addToFavorite() {
     loadingFavorite.toggleOn();
 
     accountDependencies.service
       .addFavorite({
-        favorite: true,
+        favorite: !movieAccountStates?.favorite,
         media_id: movie.id,
         media_type: MediaType.movie,
       })
       .then(() => {
+        setMovieAccountStates((prev) => {
+          if (!prev) return prev;
+
+          return { ...prev, favorite: !prev.favorite };
+        });
         toasts.info('Agregado a favoritos');
       })
       .catch(() => {
@@ -47,17 +68,26 @@ export function MovieButtons({ movie }: { movie: IMovie }) {
 
     accountDependencies.service
       .addWatchlist({
-        watchlist: true,
+        watchlist: !movieAccountStates?.watchlist,
         media_id: movie.id,
         media_type: MediaType.movie,
       })
       .then(() => {
         toasts.info('Agregado a la lista');
+        setMovieAccountStates((prev) => {
+          if (!prev) return prev;
+
+          return { ...prev, watchlist: !prev.watchlist };
+        });
       })
       .catch(() => {
         toasts.error('No se pudo agregar a la lista');
       })
       .finally(loadingWatchList.toggleOff);
+  }
+
+  if (loadingMovieAccountStates.isToggled) {
+    return <Spinner />;
   }
 
   return (
@@ -66,9 +96,12 @@ export function MovieButtons({ movie }: { movie: IMovie }) {
         {loadingFavorite.isToggled ? (
           <Spinner />
         ) : (
-          <ButtonCircle onClick={addToFavorite} title='Agregar a favoritos'>
+          <ButtonCircle
+            onClick={addToFavorite}
+            title={`${movieAccountStates?.favorite ? 'Remover de' : 'Agregar a'} favoritos`}
+          >
             <svg
-              className='w-4 h-4 text-white'
+              className={`w-5 h-5 ${movieAccountStates?.favorite ? 'text-red-600' : 'text-white'}`}
               aria-hidden='true'
               xmlns='http://www.w3.org/2000/svg'
               width='24'
@@ -87,7 +120,9 @@ export function MovieButtons({ movie }: { movie: IMovie }) {
         ) : (
           <ButtonCircle onClick={addToWatchlist} title='Agregar a la lista'>
             <svg
-              className='w-4 h-4 dark:text-white'
+              className={`w-5 h-5 ${
+                movieAccountStates?.watchlist ? 'text-blue-600' : 'text-white'
+              }`}
               aria-hidden='true'
               xmlns='http://www.w3.org/2000/svg'
               width='24'
