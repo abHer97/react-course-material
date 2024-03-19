@@ -49,7 +49,6 @@ export class MovieService implements IMovieService {
     const parsedOptions = parse(movideDetailsOptionsSchema, options);
 
     const response = await this.dataSource.getMovieCredits(parsedOptions);
-    console.log({ response });
 
     return parseMovieCreditsResponse(response);
   }
