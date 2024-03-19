@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { isString } from '../../../../shared/domain/validations/string';
 import { IPartialMovie } from '../../../domain/entities/movie';
 import { FileSize, Img } from '../../../../components/img/img';
+import { MoviePercentage } from '../movie-percentage/movie-percentage';
 
 export interface MovieCardProps {
   movie: IPartialMovie;
@@ -20,7 +21,7 @@ export function MovieCard({ movie, linkTo }: MovieCardProps) {
   );
 
   return (
-    <article className='w-44 flex flex-col gap-4'>
+    <article className='relative w-44 flex flex-col gap-4'>
       {isString(linkTo) ? (
         <Link
           to={'movie/' + linkTo}
@@ -33,6 +34,9 @@ export function MovieCard({ movie, linkTo }: MovieCardProps) {
           {movieImage}
         </header>
       )}
+      <div className='absolute top-59 left-2'>
+        <MoviePercentage movieVoteAverage={movie.vote_average} />
+      </div>
       <div>
         <h2>{movie.title}</h2>
         <p className='text-xs text-gray-700'>{movie.release_date}</p>
