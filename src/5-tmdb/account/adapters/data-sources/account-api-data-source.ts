@@ -14,7 +14,7 @@ export class AccountApiDataSource implements IAccountDataSource {
 
   addWatchlist(data: IWatchlistPayload): Promise<unknown> {
     return this.httpClient
-      .post(`/account/${this.accountId}/favorite`, { body: data })
+      .post(`/account/${this.accountId}/watchlist`, { body: data })
       .then((resp) => resp.data);
   }
 }
