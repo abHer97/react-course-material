@@ -24,7 +24,7 @@ export function MovieCredits({ movieId }: { movieId: number }) {
 
   if (data) {
     return (
-      <section>
+      <section className=' p-2 sm:p-0'>
         <h2>Reparto</h2>
 
         <ul className='flex flex-row gap-2 w-full overflow-y-scroll'>
