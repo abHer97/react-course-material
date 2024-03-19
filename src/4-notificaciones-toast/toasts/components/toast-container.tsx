@@ -37,7 +37,7 @@ export function ToastContainer({ position = ToastsPosition.topRight }: ToastCont
   return (
     <section
       aria-label='notifications'
-      className={`fixed flex flex-col gap-2 ${positions.current[position]}`}
+      className={`fixed flex flex-col gap-2 z-[99999] ${positions.current[position]}`}
     >
       {toasts.map((toast) => {
         return (
