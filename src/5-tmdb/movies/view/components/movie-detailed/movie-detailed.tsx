@@ -1,10 +1,9 @@
 import { FileSize, Img } from '../../../../components/img/img';
 import { IMovie } from '../../../domain/entities/movie';
 import { MovieCredits } from '../movie-credits/movie-credits';
+import { MoviePercentage } from '../movie-percentage/movie-percentage';
 
 export function MovieDetailed({ movie }: { movie: IMovie }) {
-  const percentage = Math.round(movie.vote_average * 10);
-
   return (
     <section className='flex flex-col gap-4'>
       <div className='flex flex-row gap-4'>
@@ -20,17 +19,7 @@ export function MovieDetailed({ movie }: { movie: IMovie }) {
             </ul>
           </div>
           <div>
-            <p
-              className={`relative w-9 h-9 rounded-full ${
-                percentage <= 40
-                  ? 'bg-red-500 text-white'
-                  : percentage <= 69
-                  ? 'bg-yellow-500 text-white'
-                  : 'bg-green-600 text-white'
-              } flex items-center justify-center text-xs`}
-            >
-              {percentage}%
-            </p>
+            <MoviePercentage movieVoteAverage={movie.vote_average} />
             <span>Puntuacion de usuario</span>
           </div>
           <span>Resumen</span>
