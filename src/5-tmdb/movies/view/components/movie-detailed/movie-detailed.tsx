@@ -8,11 +8,14 @@ export function MovieDetailed({ movie }: { movie: IMovie }) {
   return (
     <section className='flex flex-col gap-4'>
       <div className='relative flex flex-col md:flex-row gap-4'>
-        <Img
-          className='absolute w-full h-64 object-cover -z-10 opacity-20'
-          fileSize={FileSize.w500}
-          src={movie.backdrop_path}
-        />
+        <div
+          className='absolute w-full h-full max-h-64 -z-10'
+          style={{
+            backgroundImage: `linear-gradient(rgba(255,255,255,0.6),rgba(255,255,255,0.6)), linear-gradient(to top, rgb(255,255,255), rgba(0,0,0,0.1)), url('https://image.tmdb.org/t/p/w500${movie.backdrop_path})`,
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+          }}
+        ></div>
         <Img className='max-h-64 object-contain' fileSize={FileSize.w200} src={movie.poster_path} />
         <article className='flex flex-col gap-4 p-2 sm:p-0'>
           <div>
