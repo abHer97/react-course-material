@@ -39,6 +39,7 @@ function useQueryStore<T>(): IQueryStore<T> {
       ...prev,
       status: QueryState.success,
       data,
+      error: null,
     }));
   }
 
@@ -46,6 +47,7 @@ function useQueryStore<T>(): IQueryStore<T> {
     setState((prev) => ({
       ...prev,
       status: QueryState.loading,
+      error: null,
     }));
   }
 
