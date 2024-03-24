@@ -38,7 +38,9 @@ export function MovieCard({ movie, linkTo }: MovieCardProps) {
         <MoviePercentage movieVoteAverage={movie.vote_average} />
       </div>
       <div>
-        <h2>{movie.title}</h2>
+        <Link className='hover:underline' to={`/movie/${movie.id}`}>
+          <span>{movie.title}</span>
+        </Link>
         <p className='text-xs text-gray-700'>{movie.release_date}</p>
       </div>
     </article>
