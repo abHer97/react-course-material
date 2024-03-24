@@ -20,45 +20,45 @@ function getAgeYears(date: string) {
 
 export function PersonDetails({ data }: IProps) {
   return (
-    <article className='grid grid-cols-4 gap-4'>
-      <aside className='flex flex-col gap-4'>
+    <article className='grid grid-cols-4 gap-8'>
+      <aside className='flex flex-col gap-4 sticky top-0 h-[100dvh] overflow-y-scroll'>
         <Img
           fileSize={FileSize.w400}
           src={data.profile_path}
           alt={`Imagen de perfil de ${data.name}`}
         />
-        <div className='flex flex-col gap-4'>
-          <h3 className='text-xl'>Información personal</h3>
-          <Details name='Conocido por' value={data.known_for_department} />
-          <Details name='Sexo' value={Genre[data.gender]} />
-          <Details
-            name='Fecha de nacimiento'
-            value={`${data.birthday} (${getAgeYears(data.birthday)} años)`}
-          />
-          <Details name='Lugar de nacimiento' value={data.place_of_birth} />
-          <div>
-            <p className='font-medium text-lg'>También conocido como</p>
-            <ul>
-              {data.also_known_as.map((alterName) => {
-                return (
-                  <li key={alterName}>
-                    <p className='font-light'>{alterName}</p>
-                  </li>
-                );
-              })}
-            </ul>
-          </div>
+        <h3 className='text-xl'>Información personal</h3>
+        <Details name='Conocido por' value={data.known_for_department} />
+        <Details name='Sexo' value={Genre[data.gender]} />
+        <Details
+          name='Fecha de nacimiento'
+          value={`${data.birthday} (${getAgeYears(data.birthday)} años)`}
+        />
+        <Details name='Lugar de nacimiento' value={data.place_of_birth} />
+        <div>
+          <p className='font-medium text-lg'>También conocido como</p>
+          <ul>
+            {data.also_known_as.map((alterName) => {
+              return (
+                <li key={alterName}>
+                  <p className='font-light'>{alterName}</p>
+                </li>
+              );
+            })}
+          </ul>
         </div>
       </aside>
-      <section className='col-span-3'>
-        <h2 className='font-bold text-2xl'>{data.name}</h2>
-        <h3 className='text-xl'>Biografía</h3>
-        <p>
-          {data.biography
-            ? data.biography
-            : `No se encontro la biografia de ${data.name}. Pruebe buscando en otro idioma`}
-        </p>
-        <PersonCredits />
+      <section className='col-span-3 flex flex-col gap-4'>
+        <h2 className='font-bold text-2xl bg-white sticky top-0 p-2'>{data.name}</h2>
+        <div>
+          <h3 className='text-xl'>Biografía</h3>
+          <p>
+            {data.biography
+              ? data.biography
+              : `No se encontro la biografia de ${data.name}. Pruebe buscando en otro idioma`}
+          </p>
+        </div>
+        <PersonCredits data={data} />
       </section>
     </article>
   );
