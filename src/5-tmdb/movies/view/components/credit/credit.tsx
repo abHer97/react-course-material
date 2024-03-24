@@ -24,7 +24,7 @@ export function Credit({ data: credit }: { data: IMovieCredit }) {
         )}
       </Link>
       <div className='p-2'>
-        <Link to={link} className='text-sm font-bold'>
+        <Link to={link} className='text-sm font-bold hover:underline'>
           {credit.name}
         </Link>
         <h4 className='text-xs'>{credit.character}</h4>
