@@ -13,7 +13,7 @@ export interface MovieCardProps {
 export function MovieCard({ movie, linkTo }: MovieCardProps) {
   const movieImage = (
     <Img
-      className='object-cover'
+      className='object-cover w-44 h-64'
       fileSize={FileSize.w300}
       src={movie.poster_path}
       alt={movie.title}
@@ -25,12 +25,12 @@ export function MovieCard({ movie, linkTo }: MovieCardProps) {
       {isString(linkTo) ? (
         <Link
           to={'movie/' + linkTo}
-          className='w-full h-64 shadow-md hover:shadow-xl transition-shadow rounded-md overflow-hidden'
+          className='w-full shadow-md hover:shadow-xl transition-shadow rounded-md overflow-hidden'
         >
           {movieImage}
         </Link>
       ) : (
-        <header className='w-full h-64 shadow-md hover:shadow-xl transition-shadow rounded-md overflow-hidden'>
+        <header className='w-full shadow-md hover:shadow-xl transition-shadow rounded-md overflow-hidden'>
           {movieImage}
         </header>
       )}
