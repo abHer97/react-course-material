@@ -4,6 +4,7 @@ import { IPersonCombinedCredits } from '../../domain/entities/person-credits';
 import { isString } from '../../../shared/domain/validations/string';
 import { MediaTypeBadge } from '../../../components/media-type/media-type-badge';
 import { TopMovieCredits } from './top-movie-credits';
+import { MediaType } from '../../../shared/domain/entities/media-type';
 
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -73,7 +74,9 @@ export function PersonCredit({ data }: { data: IPersonCombinedCredits[] }) {
                         {credit.title || credit.name ? (
                           <Link
                             className='hover:underline text-blue-500'
-                            to={`/movie/${credit.id}`}
+                            to={`/${credit.media_type === MediaType.movie ? 'movie' : 'tv'}/${
+                              credit.id
+                            }`}
                           >
                             <span>{credit.title || credit.name}</span>
                           </Link>
