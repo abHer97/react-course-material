@@ -9,7 +9,6 @@ export interface ITvShowDetails {
   adult: boolean;
   backdrop_path: string;
   created_by: ICreatedBy[];
-  episode_run_time: unknown[];
   first_air_date: string;
   genres: IMediaGenre[];
   homepage: string;

@@ -1,11 +1,11 @@
 import { HTMLAttributes } from 'react';
 
-export function MoviePercentage({
-  movieVoteAverage,
+export function Percentage({
+  voteAverage,
   className = '',
   ...props
-}: { movieVoteAverage: number } & Omit<HTMLAttributes<HTMLParagraphElement>, 'children'>) {
-  const percentage = Math.round(movieVoteAverage * 10);
+}: { voteAverage: number } & Omit<HTMLAttributes<HTMLParagraphElement>, 'children'>) {
+  const percentage = Math.round(voteAverage * 10);
 
   return (
     <p

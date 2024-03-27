@@ -2,7 +2,7 @@ import { FileSize, Img } from '../../../../components/img/img';
 import { IMovie } from '../../../domain/entities/movie';
 import { MovieButtons } from '../movie-buttons/movie-buttons';
 import { MovieCredits } from '../movie-credits/movie-credits';
-import { MoviePercentage } from '../movie-percentage/movie-percentage';
+import { Percentage } from '../../../../components/percentage/movie-percentage';
 
 export function MovieDetailed({ movie }: { movie: IMovie }) {
   return (
@@ -30,7 +30,7 @@ export function MovieDetailed({ movie }: { movie: IMovie }) {
             </div>
           </div>
           <div className='flex flex-row items-center gap-2'>
-            <MoviePercentage movieVoteAverage={movie.vote_average} />
+            <Percentage voteAverage={movie.vote_average} />
             <span>Puntuacion de usuario</span>
           </div>
           <MovieButtons movie={movie} />

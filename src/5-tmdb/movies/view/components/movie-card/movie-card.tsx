@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { isString } from '../../../../shared/domain/validations/string';
 import { IPartialMovie } from '../../../domain/entities/movie';
 import { FileSize, Img } from '../../../../components/img/img';
-import { MoviePercentage } from '../movie-percentage/movie-percentage';
+import { Percentage } from '../../../../components/percentage/movie-percentage';
 
 export interface MovieCardProps {
   movie: IPartialMovie;
@@ -35,7 +35,7 @@ export function MovieCard({ movie, linkTo }: MovieCardProps) {
         </header>
       )}
       <div className='absolute top-59 left-2'>
-        <MoviePercentage movieVoteAverage={movie.vote_average} />
+        <Percentage voteAverage={movie.vote_average} />
       </div>
       <div>
         <Link className='hover:underline' to={`/movie/${movie.id}`}>
