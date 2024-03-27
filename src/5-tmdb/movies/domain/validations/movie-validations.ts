@@ -1,4 +1,4 @@
-import { array, boolean, number, object, parse, string } from 'valibot';
+import { array, boolean, nullable, number, object, parse, string } from 'valibot';
 
 import { IMovie } from '../entities/movie';
 
@@ -27,7 +27,7 @@ const spokenLanguageSchema = object({
 
 export const movieSchema = object({
   adult: boolean(),
-  backdrop_path: string(),
+  backdrop_path: nullable(string()),
   id: number(),
   title: string(),
   original_language: string(),
