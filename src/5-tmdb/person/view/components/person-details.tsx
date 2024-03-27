@@ -1,4 +1,5 @@
 import { FileSize, Img } from '../../../components/img/img';
+import { Typography } from '../../../components/typography';
 import { Genre } from '../../../shared/domain/entities/genre';
 import { IPersonDetails } from '../../domain/entities/person-details';
 import { PersonCredits } from './person-credits';
@@ -27,7 +28,7 @@ export function PersonDetails({ data }: IProps) {
           src={data.profile_path}
           alt={`Imagen de perfil de ${data.name}`}
         />
-        <h3 className='text-xl'>Información personal</h3>
+        <Typography as='h3'>Información personal</Typography>
         <Details name='Conocido por' value={data.known_for_department} />
         <Details name='Sexo' value={Genre[data.gender]} />
         <Details
@@ -49,9 +50,9 @@ export function PersonDetails({ data }: IProps) {
         </div>
       </aside>
       <section className='col-span-3 flex flex-col gap-4'>
-        <h2 className='font-bold text-2xl bg-white sticky top-0 p-2'>{data.name}</h2>
+        <Typography as='h2'>{data.name}</Typography>
         <div>
-          <h3 className='text-xl'>Biografía</h3>
+          <Typography as='h3'>Biografía</Typography>
           <p>
             {data.biography
               ? data.biography

@@ -5,6 +5,8 @@ import { isString } from '../../../shared/domain/validations/string';
 import { MediaTypeBadge } from '../../../components/media-type/media-type-badge';
 import { TopMovieCredits } from './top-movie-credits';
 import { MediaType } from '../../../shared/domain/entities/media-type';
+import { IPersonDetails } from '../../domain/entities/person-details';
+import { Typography } from '../../../components/typography';
 
 const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -47,12 +49,18 @@ function groupDataByYear(data: IPersonCombinedCredits[]) {
   return grouped;
 }
 
-export function PersonCredit({ data }: { data: IPersonCombinedCredits[] }) {
+export function PersonCredit({
+  data,
+  person,
+}: {
+  data: IPersonCombinedCredits[];
+  person: IPersonDetails;
+}) {
   const grouped = groupDataByYear(data);
 
   return (
     <div className='flex flex-col gap-4'>
-      <TopMovieCredits data={data} />
+      <TopMovieCredits data={data} personGenre={person.gender} />
       <article
         className='[&>div:not(:first-child)]:border-t [&>div:not(:first-child)]:border-gray-300'
         style={{
@@ -66,7 +74,7 @@ export function PersonCredit({ data }: { data: IPersonCombinedCredits[] }) {
 
             return (
               <div key={key} className='p-4'>
-                <h4 className='text-lg'>{key.slice(-4)}</h4>
+                <Typography as='h4'>{key.slice(-4)}</Typography>
                 <ul className='list-disc list-inside'>
                   {credits.map((credit) => {
                     return (

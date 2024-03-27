@@ -19,7 +19,7 @@ export function PersonCredits({ data: person }: { data: IPersonDetails }) {
   }
 
   if (data) {
-    return <PersonCredit data={data} />;
+    return <PersonCredit data={data} person={person} />;
   }
 
   return <div>No se encontraron datos para la peticion</div>;
