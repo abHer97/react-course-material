@@ -48,7 +48,6 @@ export function MovieDetails() {
       })
       .catch((err) => {
         if (err instanceof AxiosError) {
-          console.log({ err });
           if (err.response?.status === 404) {
             setMovie({ status: 'not-found' });
           } else {
